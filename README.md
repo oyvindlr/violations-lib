@@ -50,6 +50,7 @@ A number of **parsers** have been implemented. Some **parsers** can parse output
 | [_PiTest_](http://pitest.org/)                                                        | `PITEST`             | 
 | [_PyDocStyle_](https://pypi.python.org/pypi/pydocstyle)                               | `PYDOCSTYLE`         | 
 | [_PyFlakes_](https://pypi.python.org/pypi/pyflakes)                                   | `FLAKE8`             | 
+| [_RegEx_](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html)     | `REGEX`              | Regular expressions can be used to create parsers for any violation format.
 | [_PyLint_](https://www.pylint.org/)                                                   | `PYLINT`             | With `pylint --output-format=parseable`.
 | [_ReSharper_](https://www.jetbrains.com/resharper/)                                   | `RESHARPER`          | 
 | [_RubyCop_](http://rubocop.readthedocs.io/en/latest/formatters/)                      | `CLANG`              | With `rubycop -f clang file.rb`

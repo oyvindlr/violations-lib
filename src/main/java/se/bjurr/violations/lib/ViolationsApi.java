@@ -6,9 +6,12 @@ import static se.bjurr.violations.lib.util.Utils.checkNotNull;
 import static se.bjurr.violations.lib.util.Utils.setReporter;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import se.bjurr.violations.lib.model.Violation;
+import se.bjurr.violations.lib.parsers.ViolationsParserWithParameters;
 import se.bjurr.violations.lib.reports.Parser;
 
 public class ViolationsApi {
@@ -18,6 +21,7 @@ public class ViolationsApi {
   private Parser parser;
   private File startFile;
   private String reporter;
+  private Map<String, String> parameters = new HashMap<String, String>();
 
   public static String getDetailedReport(final List<Violation> violations) {
     return new DetailedReportCreator(violations) //
@@ -40,6 +44,16 @@ public class ViolationsApi {
     return this;
   }
 
+  /**
+   * Pattern when using this becomes
+   * violationsApi().withPattern("a").inFolder("b").givenParameter("paramA",
+   * "aValue").findAll(parser).violations()
+   */
+  public ViolationsApi givenParameter(String name, String value) {
+    parameters.put(name, value);
+    return this;
+  }
+
   public ViolationsApi inFolder(final String folder) {
     startFile = new File(checkNotNull(folder, "folder"));
     if (!startFile.exists()) {
@@ -56,6 +70,7 @@ public class ViolationsApi {
         LOG.log(FINE, f.getAbsolutePath());
       }
     }
+    addParametersToParser();
     final List<Violation> foundViolations = parser.findViolations(includedFiles);
     final boolean reporterWasSupplied =
         reporter != null && !reporter.trim().isEmpty() && !reporter.equals(parser.name());
@@ -82,6 +97,15 @@ public class ViolationsApi {
       }
     }
     return foundViolations;
+  }
+
+  private void addParametersToParser() {
+    if (parser.getViolationsParser() instanceof ViolationsParserWithParameters) {
+      ViolationsParserWithParameters p =
+          (ViolationsParserWithParameters) parser.getViolationsParser();
+      p.clearParameters();
+      parameters.forEach((name, value) -> p.setParameter(name, value));
+    }
   }
 
   private String makeWindowsFriendly(final String regularExpression) {

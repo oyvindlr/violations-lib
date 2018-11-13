@@ -82,6 +82,11 @@ public enum Reporter {
   PITEST("PiTest", Parser.PITEST, "http://pitest.org/", ""),
   PYDOCSTYLE("PyDocStyle", Parser.PYDOCSTYLE, "https://pypi.python.org/pypi/pydocstyle", ""),
   PYFLAKES("PyFlakes", Parser.FLAKE8, "https://pypi.python.org/pypi/pyflakes", ""),
+  REGEX(
+      "RegEx",
+      Parser.REGEX,
+      "https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html",
+      "Regular expressions can be used to create parsers for any violation format."),
   PYLINT(
       "PyLint",
       Parser.PYLINT,

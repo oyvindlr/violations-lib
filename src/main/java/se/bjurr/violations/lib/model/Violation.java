@@ -257,6 +257,13 @@ public class Violation implements Serializable, Comparable<Violation> {
     } else if (!startLine.equals(other.startLine)) {
       return false;
     }
+    if (category == null) {
+      if (other.category != null) {
+        return false;
+      }
+    } else if (!category.equals(other.category)) {
+      return false;
+    }
     return true;
   }
 

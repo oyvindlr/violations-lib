@@ -36,6 +36,7 @@ import se.bjurr.violations.lib.parsers.PerlCriticParser;
 import se.bjurr.violations.lib.parsers.PiTestParser;
 import se.bjurr.violations.lib.parsers.PyDocStyleParser;
 import se.bjurr.violations.lib.parsers.PyLintParser;
+import se.bjurr.violations.lib.parsers.RegexParser;
 import se.bjurr.violations.lib.parsers.ResharperParser;
 import se.bjurr.violations.lib.parsers.SbtScalacParser;
 import se.bjurr.violations.lib.parsers.SimianParser;
@@ -55,33 +56,34 @@ public enum Parser {
   CPPCHECK(new CPPCheckParser()), //
   CPPLINT(new CppLintParser()), //
   CSSLINT(new CSSLintParser()), //
+  DOCFX(new DocFXParser()), //
   FINDBUGS(new FindbugsParser()), //
   FLAKE8(new Flake8Parser()), //
   FXCOP(new FxCopParser()), //
   GENDARME(new GendarmeParser()), //
   JCREPORT(new JCReportParser()), //
   JSHINT(new JSHintParser()), //
-  LINT(new LintParser()), //
   KLOCWORK(new KlocworkParser()), //
   KOTLINMAVEN(new KotlinMavenParser()), //
   KOTLINGRADLE(new KotlinGradleParser()), //
+  LINT(new LintParser()), //
   MYPY(new MyPyParser()), //
   GOLINT(new GoLintParser()), //
   GOOGLEERRORPRONE(new GoogleErrorProneParser()), //
+  PCLINT(new PCLintParser()), //
   PERLCRITIC(new PerlCriticParser()), //
   PITEST(new PiTestParser()), //
   PMD(new PMDParser()), //
   PYDOCSTYLE(new PyDocStyleParser()), //
   PYLINT(new PyLintParser()), //
+  REGEX(new RegexParser()), //
   RESHARPER(new ResharperParser()), //
   SBTSCALAC(new SbtScalacParser()), //
   SIMIAN(new SimianParser()), //
   STYLECOP(new StyleCopParser()), //
   XMLLINT(new XMLLintParser()), //
   YAMLLINT(new YAMLlintParser()), //
-  ZPTLINT(new ZPTLintParser()), //
-  DOCFX(new DocFXParser()), //
-  PCLINT(new PCLintParser());
+  ZPTLINT(new ZPTLintParser());
 
   private static Logger LOG = Logger.getLogger(Parser.class.getSimpleName());
   private transient ViolationsParser violationsParser;
